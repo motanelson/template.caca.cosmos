@@ -6,27 +6,27 @@ using System.Drawing;
 using Cosmos.System.Graphics;
 using Sys = Cosmos.System;
 
-namespace Cosmoscaca
+namespace Cosmosvga
 {
     public class Kernel : Sys.Kernel
     {
 
         protected override void BeforeRun()
         {
-            Console.WriteLine("Cosmos booted successfully. Type a line of text to get it echoed back.");
+            graf.starts();
         }
 
         protected override void Run()
         {
-            while (true) 
+            while (true)
             {
                 lines.Main();
                 var input = Console.ReadLine();
 
 
             }
-            
-            
+
+
         }
     }
     class graf
@@ -39,8 +39,8 @@ namespace Cosmoscaca
 
 
             Pen p = new Pen(Color.FromArgb(0, 0, 0));
-            canvas.DrawPoint(p,x,y);
-            
+            canvas.DrawPoint(p, x, y);
+
 
 
 
@@ -71,25 +71,26 @@ namespace Cosmoscaca
 
 
         }
-        public static void starts() 
+        public static void starts()
         {
 
 
-            canvas = FullScreenCanvas.GetFullScreenCanvas();  
+            canvas= FullScreenCanvas.GetFullScreenCanvas(new Mode(640, 480, ColorDepth.ColorDepth32));
+            Sys.MouseManager.ScreenHeight = (uint)(470);
+            Sys.MouseManager.ScreenWidth = (uint)(630);
 
-            
-            
-            
+
+
 
         }
-        public static void displays() 
+        public static void displays()
         {
 
             canvas.Display();
 
 
         }
-        public static void cls(Color c) 
+        public static void cls(Color c)
         {
 
 
@@ -114,16 +115,16 @@ namespace Cosmoscaca
         public static void mainLoop()
         {
             //
+
             
-            graf.starts();
             graf.cls(Color.White);
-            for (int i = 0; i < 1024; i = i + 8) 
+            for (int i = 0; i < 639; i = i + 10)
             {
-                graf.hlines( 0, i, 1024);
-                graf.vline( i, 0, 800);
+                graf.hlines(0, i, 639);
+                graf.vline(i, 0, 479);
 
             }
-            
+
             graf.displays();
         }
 
